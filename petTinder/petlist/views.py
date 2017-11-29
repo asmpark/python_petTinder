@@ -2,10 +2,10 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User,Pets
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
-from . import models, forms
+from models import Pets
 
 # Create your views here.
 
@@ -13,7 +13,7 @@ from . import models, forms
 def userpets(request):
     try:
         userPetList=(Pets.objects
-                     .where(id=request.user.id))
+                     .filter(id=request.user.id))
 #        userPetList=(User.objects
 #                   .exclude(id=request.user.id)
 #                   .order_by('?')[0])
