@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'swipe',
     'editprofile',
     'homepage',
+    'petlist',
 ]
 
 MIDDLEWARE = [
