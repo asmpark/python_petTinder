@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static "stylesheet.css" %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="petTinder">
+      {% if petTinder %}
+      <div class="name">
+        <h2>{{petTinder.username}}</h2>
+      </div>
+      <img class="profpic" src="{{petTinder.userprofile.photo.url}}" alt="No User Photo Available">
+      <div class="bio">
+        <h3>Bio:<br></h3>
+        <p>
+        {{petTinder.userprofile.bio}}<br>
+        <a href="{% url "like" user_id=petTinder.id %}">Like</a>
+        <a href="{% url "nah" user_id=petTinder.id %}">Pass</a>
+        </p>
+      </div>
+      {% else %}
+        Wait for more pets nearby!
+      {% endif %}
+  </div>
+</body>
+</html>

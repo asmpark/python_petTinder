@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <a href="{% url "logoutuser" %}">Log Out</a><br>
+  <a href="{% url "profile" %}">Edit Profile</a><br>
+  <a href="{% url "index" %}">Swipe Page</a>
+
+</body>
+</html>
