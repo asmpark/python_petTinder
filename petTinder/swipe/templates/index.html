@@ -7,6 +7,9 @@
   <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
+  <div class="page-header">
+      <a href="{% url "homepage" %}">Home Page</a><br>
+  </div>
   <div class="petTinder">
       {% if petTinder %}
       <div class="name">

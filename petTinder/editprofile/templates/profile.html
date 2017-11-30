@@ -7,6 +7,9 @@
   <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
+  <div class="page-header">
+      <a href="{% url "homepage" %}">Home Page</a><br>
+  </div>
   <form action="{% url "profile" %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     <h2>Edit Profile:</h2>
