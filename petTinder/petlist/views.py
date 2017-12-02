@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 
 from . import models, forms
 
-from petlist.models import Pets
+from .models import Pets
 from .forms import PetForm
 
 # Create your views here.
@@ -17,7 +17,7 @@ from .forms import PetForm
 def userpets(request):
     try:
         userPetList=(Pets.objects
-                     .filter(id=request.user.id))
+                     .filter(user=request.user))
     except IndexError:
         userPetList=None
     context=dict(userPetList=userPetList)
@@ -30,11 +30,11 @@ def create_pet(request):
         if form.is_valid():
             newpet = form.save(commit=False)
             newpet.user = request.user
-            newpet.pet_name=request.pet_name
-            newpet.pet_photo=request.pet_photo
-            newpet.pet_bio=request.pet_bio
+            newpet.pet_name=request.POST['pet_name']
+            newpet.pet_photo=request.FILES['pet_photo']
+            newpet.pet_bio=request.POST['pet_bio']
             newpet.save()
-            return redirect('userpets', pk=newpet.pk)
+            return redirect('userpets')
     else:
         form = PetForm()
     return render(request, 'createpet.html', {'form': form})

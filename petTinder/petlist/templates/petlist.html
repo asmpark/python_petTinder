@@ -11,13 +11,22 @@
         <a href="{% url "homepage" %}">Home Page</a><br>
         <a href="{% url "create_pet" %}">Add a New Pet</a><br>
     </div>
-    <div class="content container">
+    <!-- <div class="content container">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-8"> -->
                 <!-- {% block content %}
                 {% endblock %} -->
-            </div>
+            <!-- </div>
         </div>
-    </div>
+    </div> -->
+    {% for field in form %}
+      <div class="fieldWrapper">
+          {{ field.user }}
+          {{ field.pet_name }}
+          {{ field.pet_photo }}
+          {{ field.pet_bio }}
+          {{ field }}
+      </div>
+    {% endfor %}
 </body>
 </html>
