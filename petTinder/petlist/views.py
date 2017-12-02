@@ -39,31 +39,5 @@ def create_pet(request):
     else:
         form = PetForm()
     return render(request, 'createpet.html', {'form': form})
-#def create_pet(request, user_id):
-#    user=User.objects.get(pk=user_id)
-#    newpet = Pets(
-#        user=request.user,
-#        pet_name=request.pet_name,
-#        pet_photo=request.pet_photo,
-#        pet_bio=request.pet_bio,
-#    )
-#    newpet.save()
-#    return render(request,'createpet.html')
 
-#@login_required
-#def new_pet(request):
-#
-#    if request.method=='POST':
-##        form=forms.PetForm(request.POST,request.FILES,instance=profile)
-##        form=forms.PetForm(request.POST,request.FILES)
-#        if form.is_valid():
-#            if profile:
-#                form.save()
-#            else:
-#                profile=form.save(commit=False)
-#                profile.user=request.user
-#                profile.save()
-#    form=forms.PetForm(instance=profile)
-#    context=dict(form=form)
-#    return render(request,'profile.html',context)
 

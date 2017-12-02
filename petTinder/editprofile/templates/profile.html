@@ -12,11 +12,12 @@
   </div>
   <form action="{% url "profile" %}" method="post" enctype="multipart/form-data">
     {% csrf_token %}
-    <h2>Edit Profile:</h2>
+    <h2>Edit Profile: {{curr_user}}</h2>
     {{ form.as_p }}
     <p>
       <button type="submit">Save</button>
     </p>
   </form>
+  <a href="{% url "del_user" %}">Delete User</a>
 </body>
 </html>

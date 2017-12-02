@@ -19,10 +19,7 @@ def homepage(request):
     context=dict(petTinder=petTinder)
     return render(request,'homepage.html',context)
 
+@login_required
 def logoutuser(request):
-##    auth_log(request)
-#    context=None
-##    return render(request,'register',context)
-#    return redirect('register')
     logout(request)
     return redirect('/login/')
