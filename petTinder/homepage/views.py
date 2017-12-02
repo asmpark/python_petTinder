@@ -4,6 +4,7 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
 
 # Create your views here.
 

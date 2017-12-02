@@ -16,8 +16,10 @@ from .forms import PetForm
 @login_required
 def userpets(request):
     try:
+        userPetList=[]
         userPetList=(Pets.objects
                      .filter(user=request.user))
+#                     )
     except IndexError:
         userPetList=None
     context=dict(userPetList=userPetList)
