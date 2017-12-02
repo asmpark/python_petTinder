@@ -14,13 +14,13 @@
   <div class="petTinder">
       {% if petTinder %}
       <div class="name">
-        <h2>{{petTinder.username}}</h2>
+        <h2>{{petTinder.pet_name}}</h2>
       </div>
-      <img class="profpic" src="{{petTinder.userprofile.photo.url}}" alt="No User Photo Available">
+      <img class="profpic" src= "{{petTinder.pet_photo.url}}" alt="No Pet Photo Available">
       <div class="bio">
         <h3>Bio:<br></h3>
         <p>
-        {{petTinder.userprofile.bio}}<br>
+        {{petTinder.pet_bio}}<br>
         <a href="{% url "like" user_id=petTinder.id %}">Like</a>
         <a href="{% url "nah" user_id=petTinder.id %}">Pass</a>
         </p>
