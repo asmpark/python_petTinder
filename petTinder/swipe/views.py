@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from petlist.models import Pets
+from swipe.models import PetVote
 
 from . import models, forms
 
@@ -21,14 +22,14 @@ def index(request):
     context=dict(petTinder=petTinder)
     return render(request,'index.html',context)
 
-def create_vote(request,pet_id, vote):
+def create_vote(request,pet_id_num, voting):
     ##FIXFIXFIX
-    user_id=User.objects.only('id').get(id=request.user.id)
-    pet_id=Pets.objects.only('id').get(id=pet_id)
-    models.UserVote.objects.create(
-       user_id=user_id,
-       pet_id=pet_id,
-       vote=vote,
+#    user=User.objects.only('id').get(id=request.user.id)
+#    pet_id=Pets.objects.only('id').get(id=pet_id_num)
+    models.PetVote.objects.create(
+       user_id=request.user.id,
+       pet_id=pet_id_num,
+       vote=voting,
     )
     return redirect('index')
 
