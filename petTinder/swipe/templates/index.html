@@ -18,16 +18,33 @@
       </div>
       <img class="profpic" src= "{{petTinder.pet_photo.url}}" alt="No Pet Photo Available">
       <div class="bio">
-        <h3>Bio:<br></h3>
+        <h3>Bio:</h3>
         <p>
-        {{petTinder.pet_bio}}<br>
-        <a href="{% url "like" pet_id=petTinder.id %}">Like</a>
-        <a href="{% url "nah" pet_id=petTinder.id %}">Pass</a>
-        </p>
-      </div>
+
+        {{petTinder.pet_bio}}<br><br>
+
+        {% if likedAlready %}
+          {% for voted in likedAlready %}
+            {% if voted.vote %}
+              <h3>You already "liked" this pet!</h3>
+              <a href="{% url "index" %}">Next Swipe</a><br>
+            {% else %}
+              <h3>You already "passed" on this pet!</h3>
+              <a href="{% url "index" %}">Next Swipe</a><br>
+            {% endif %}
+          {% endfor %}
+        {% else %}
+          <a href="{% url "like" pet_id=petTinder.id %}">Like</a>
+          <a href="{% url "nah" pet_id=petTinder.id %}">Pass</a>
+        {% endif %}
+
       {% else %}
         Wait for more pets nearby!
       {% endif %}
+
+      </p>
+      </div>
+
   </div>
 </body>
 </html>

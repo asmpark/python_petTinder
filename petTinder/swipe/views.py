@@ -17,15 +17,17 @@ def index(request):
         petTinder=(Pets.objects
                    .exclude(user=request.user)
                    .order_by('?')[0])
+        likedAlready=(PetVote.objects
+                   .filter(user_id=request.user.id)
+                   .filter(pet_id=petTinder.id)
+                    )
     except IndexError:
         petTinder=None
-    context=dict(petTinder=petTinder)
+        likedAlready=None
+    context=dict(petTinder=petTinder, likedAlready=likedAlready)
     return render(request,'index.html',context)
 
 def create_vote(request,pet_id_num, voting):
-    ##FIXFIXFIX
-#    user=User.objects.only('id').get(id=request.user.id)
-#    pet_id=Pets.objects.only('id').get(id=pet_id_num)
     models.PetVote.objects.create(
        user_id=request.user.id,
        pet_id=pet_id_num,

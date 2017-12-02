@@ -14,6 +14,6 @@ class PetVote(models.Model):
     pet_id=models.IntegerField(default='0')
     vote=models.BooleanField(default=False)
                             
-#    class Meta:
-#         unique_together=(('user_id','pet_id'))
+    class Meta:
+         unique_together=(('user_id','pet_id'))
 
