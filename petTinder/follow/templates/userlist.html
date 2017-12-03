@@ -1,6 +1,7 @@
 <!DOCTYPE html>
+<html>
 <head>
-  <title>User List/title>
+  <title>User List</title>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
   <link rel="icon" href="{% static 'favicon.ico' %}">
@@ -13,20 +14,12 @@
   <div class="userList">
     {% if userList %}
       {% for user in userList %}
-        <h3>User Name:
-          {{user.username}} </h3>
+        <h3>User Name: {{ user.username }} </h3>
+        <!-- Make a following button here! -->
       {% endfor %}
-      <!--{% for pet in userPetList %}
-        <h3>Pet Name:
-        {{pet.pet_name}} </h3>
-        <strong>Photo:</strong>
-         <img class="pet-photo" src= "{{pet.pet_photo.url}}" alt="This is a photo of the pet">
-        <p><strong>Bio:</strong>
-        {{pet.pet_bio}}
-        </p>
-      {% endfor %}-->
     {% else %}
       You have no users to follow!
     {% endif %}
+  </div>
 </body>
 </html>

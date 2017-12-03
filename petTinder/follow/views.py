@@ -11,10 +11,11 @@ from . import models
 # Create your views here.
 
 @login_required
-def allUsers(request):
+def allusers(request):
     try:
         userList = []
-        userList = User.objects.all()
+        userList = (User.objects
+                    .exclude(username=request.user))
     except IndexError:
         userList=None
     context=dict(userList=userList)

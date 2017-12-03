@@ -30,5 +30,6 @@ urlpatterns = [
     url(r'',include('editprofile.urls')),
     url(r'',include('homepage.urls')),
     url(r'',include('petlist.urls')),
+    url(r'',include('follow.urls')),
     url(r'^favicon\.ico$', favicon_view),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
