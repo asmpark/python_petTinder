@@ -9,10 +9,17 @@
 <body>
     <div class="page-header">
         <a href="{% url "homepage" %}">Home Page</a><br>
-        <a href="{% url "create_pet" %}">Add a New Pet</a><br>
-        <a href="{% url "logoutuser" %}">Log Out</a><br>
+        <a href="{% url "logoutuser" %}">Log Out</a><br><br>
     </div>
+
     <div class="petlist">
+      {% if numPets < 10 %}
+        You can add up to 10 pets! <br>
+        <a href="{% url "create_pet" %}">Add New Pet</a><br>
+      {% else %}
+        You have the maximum number of pets. Delete a pet to make a new one.
+      {% endif%}
+
       {% if userPetList %}
         {% for pet in userPetList %}
           <h3>Pet Name:

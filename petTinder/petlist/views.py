@@ -20,9 +20,11 @@ def userpets(request):
         userPetList=[]
         userPetList=(Pets.objects
                      .filter(user=request.user))
+        numPets = len(userPetList)
     except IndexError:
         userPetList=None
-    context=dict(userPetList=userPetList)
+        numPets = '0'
+    context=dict(userPetList=userPetList, numPets=numPets)
     return render(request,'petlist.html',context)
 
 @login_required
