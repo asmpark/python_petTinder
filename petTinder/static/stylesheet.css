@@ -8,7 +8,24 @@
   width: 50%;
 }
 
+.profpic-home{
+  height: 60%;
+  width: 60%;
+  font-size: 100%;
+  font-style: italic;
+}
+
 .pet-photo{
   height: 30%;
   width: 30%;
+}
+
+.name{
+  font-style: italic;
+}
+
+.NA{
+  font-size: 70%;
+  font-style: italic;
+  font-weight: normal;
 }

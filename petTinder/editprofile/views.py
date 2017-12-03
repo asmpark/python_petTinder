@@ -9,6 +9,8 @@ from . import models, forms
 
 from petlist.models import Pets
 from swipe.models import PetVote
+from editprofile.models import UserProfile
+from .forms import UserProfileForm
 
 # Create your views here.
 
@@ -16,22 +18,23 @@ from swipe.models import PetVote
 def profile(request):
     try:
         curr_user = request.user
-        profile=request.user
-#        profile=request.user.userprofile
-        petTinder=User.objects
+        profile=request.user.userprofile
     except models.UserProfile.DoesNotExist:
         profile=None
         curr_user=None
+
+    ##DOESN'T WORK PROPERLY
     if request.method=='POST':
-        form=forms.UserProfileForm(request.POST,request.FILES,instance=profile)
+        instance = request.user.userprofile
+        form = UserProfileForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
-            if profile:
-                form.save()
-            else:
-                profile=form.save(commit=False)
-                profile.user=request.user
-                profile.save()
-    form=forms.UserProfileForm(instance=profile)
+#            form=form.save(commit=False)
+            form.user=instance
+            form.photo=request.FILES['photo']
+            form.bio=request.POST['bio']
+            form.save()
+    else:
+        form = UserProfileForm()
     context=dict(form=form, curr_user=curr_user)
     return render(request,'profile.html',context)
 
@@ -47,3 +50,15 @@ def del_user(request):
     except User.DoesNotExist:
         messages.error(request, "User does not exist")
         return render(request,'homepage.html')
+
+@login_required
+def changePW(request):
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('/login/')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'changePW.html', {'form': form})

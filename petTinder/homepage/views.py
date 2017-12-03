@@ -11,12 +11,10 @@ from django.contrib.auth import logout
 @login_required
 def homepage(request):
     try:
-        petTinder=(User.objects
-                   .exclude(id=request.user.id)
-                   .order_by('?')[0])
+        myAccount=User.objects.filter(id=request.user.id)
     except IndexError:
-        petTinder=None
-    context=dict(petTinder=petTinder)
+        myAccount=None
+    context=dict(myAccount=myAccount)
     return render(request,'homepage.html',context)
 
 @login_required

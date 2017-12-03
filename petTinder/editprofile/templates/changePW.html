@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Change Password</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+<form method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Save changes</button>
+</form>
+</body>
+</html>

@@ -8,12 +8,31 @@
 </head>
 <body>
   <div class="page-header">
-
       <a href="{% url "userpets" %}">Your Pet List</a><br>
       <a href="{% url "profile" %}">Edit Profile</a><br>
       <a href="{% url "index" %}">Swipe Page</a><br>
       <a href="{% url "allusers" %}">Follow</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
+  </div>
+
+  <div class="current-user">
+    {% if myAccount %}
+      {% for person in myAccount %}
+
+        <h1 class="name">Hello, {{person.username}}!</h1>
+        <h2>Your photo:</h2><br>
+        <img class="profpic-home" src= "{{person.photo.url}}" alt="No photo available"><br><br>
+        <h2>Your bio:<h2>
+        {% if person.bio %}
+          <p>{{person.bio}}</p>
+        {% else %}
+          <p class="NA">You have not written a bio!</p>
+        {% endif %}
+        <br>
+      {% endfor %}
+    {% else %}
+      <h3>Nothing here!</h3>
+    {% endif %}
   </div>
 
 </body>
