@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User List</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "logoutuser" %}">Log Out</a><br>
+  </div>
+  <div class="userList">
+    {% if userList %}
+      {% for user in userList %}
+        <h3>User Name: {{ user.username }} </h3>
+        <!-- Make a following button here! -->
+      {% endfor %}
+    {% else %}
+      You have no users to follow!
+    {% endif %}
+  </div>
+</body>
+</html>

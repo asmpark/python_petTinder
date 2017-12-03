@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add Pet</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static "stylesheet.css" %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+    <div class="page-header">
+        <a href="{% url "homepage" %}">Home Page</a><br>
+        <a href="{% url "userpets" %}">Your Pet List</a><br>
+    </div>
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-8">
+              <h1>New Pet</h1>
+              <form method="POST" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Add Pet</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
