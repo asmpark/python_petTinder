@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
 
 from . import models, forms
 
@@ -53,12 +55,12 @@ def del_user(request):
 
 @login_required
 def changePW(request):
-    if request.method == 'POST':
-        form = PasswordChangeForm(request.user, request.POST)
-        if form.is_valid():
-            user = form.save()
-            update_session_auth_hash(request, user)
-            return redirect('/login/')
-    else:
-        form = PasswordChangeForm(request.user)
-    return render(request, 'changePW.html', {'form': form})
+    if request.method=='POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)
+            return redirect('/login/')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, 'changePW.html', {'form': form})
