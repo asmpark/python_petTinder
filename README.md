@@ -1,6 +1,7 @@
 Creative Portion:
-1.Have a fav icon on all the URL pages title
-2.Display profile info on homepage
+1.Have a fav icon on all the URL pages title (pts)
+2.Display profile info on homepage (pts)
+3.User can change password at editProfile page (pts)
 
 Clarificaiton for Rubric:
 Logging in:
