@@ -21,20 +21,12 @@
            <img class="pet-photo" src= "{{pet.pet_photo.url}}" alt="This is a photo of the pet">
           <p><strong>Bio:</strong>
           {{pet.pet_bio}}
+          <br>
+          <a href="{% url "del_pet" pet_id=pet.id %}">Delete Pet</a>
           </p>
         {% endfor %}
       {% else %}
         You have no pets to show!
       {% endif %}
-    <!-- </div>
-    {% for field in form %}
-      <div class="fieldWrapper">
-          {{ field.user }}
-          {{ field.pet_name }}
-          {{ field.pet_photo }}
-          {{ field.pet_bio }}
-          {{ field }}
-      </div>
-    {% endfor %} -->
 </body>
 </html>

@@ -38,7 +38,6 @@ def profile(request):
 @login_required
 def del_user(request):
     try:
-#        from .models import Pets, PetVote
         u = User.objects.get(username = request.user)
         Pets.objects.filter(user_id=request.user.id).delete()
         PetVote.objects.filter(user_id=request.user.id).delete()

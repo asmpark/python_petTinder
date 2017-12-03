@@ -10,6 +10,7 @@ from . import models, forms
 
 from .models import Pets
 from .forms import PetForm
+from swipe.models import PetVote
 
 # Create your views here.
 
@@ -39,5 +40,11 @@ def create_pet(request):
     else:
         form = PetForm()
     return render(request, 'createpet.html', {'form': form})
+
+@login_required
+def del_pet(request, pet_id):
+    Pets.objects.filter(id=pet_id).delete()
+    PetVote.objects.filter(pet_id=pet_id).delete()
+    return redirect('userpets')
 
 
