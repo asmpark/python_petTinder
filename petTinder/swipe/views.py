@@ -43,3 +43,17 @@ def like(request,pet_id):
 def nah(request, pet_id):
     return create_vote(request,pet_id, False)
 
+@login_required
+def likedpets(request):
+    try:
+        likedIds=(PetVote.objects
+                   .filter(user_id=request.user.id)
+                   .filter(vote='True'))
+        petsLiked=[]
+        for i in likedIds:
+            petsLiked.append(Pets.objects.filter(id=i.pet_id).order_by('?')[0])
+    except IndexError:
+        likedIds=None
+        petsLiked=None
+    context=dict(petsLiked=petsLiked, likedIds=likedIds)
+    return render(request,'petsliked.html',context)

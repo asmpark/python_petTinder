@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Liked Pets</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "logoutuser" %}">Log Out</a><br>
+  </div>
+  <div class="petlist">
+    <h1>Pets Liked:</h1>
+    {% if petsLiked %}
+      {% for pet in petsLiked %}
+        <h3>Pet Name: {{pet.pet_name}} </h3>
+        <strong>Photo:</strong>
+         <img class="pet-photo" src= "{{pet.pet_photo.url}}" alt="This is a photo of the pet">
+        <p><strong>Bio:</strong>
+        {{pet.pet_bio}}
+        <br>
+        </p>
+      {% endfor %}
+    {% else %}
+      You have not liked any pets!
+    {% endif %}
+  </div>
+</body>
+</html>

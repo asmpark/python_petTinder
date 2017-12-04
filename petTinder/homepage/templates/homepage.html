@@ -29,6 +29,8 @@
           <p class="NA">You have not written a bio!</p>
         {% endif %}
         <br>
+        <h2>Your links:</h2>
+        <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3><br>
       {% endfor %}
     {% else %}
       <h3>Nothing here!</h3>
