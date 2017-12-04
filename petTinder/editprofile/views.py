@@ -27,7 +27,7 @@ def profile(request):
 
     ##DOESN'T WORK PROPERLY
     if request.method=='POST':
-        instance = request.user.userprofile
+        instance = request.user
         form = UserProfileForm(request.POST, request.FILES, instance=instance)
         if form.is_valid():
 #            form=form.save(commit=False)
