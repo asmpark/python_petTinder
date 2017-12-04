@@ -7,7 +7,12 @@
   <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
-  <a href="{% url "profile" %}">Return to Edit Profile</a><br>
+  <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}">
+      <h1 class="site-title">Pet Tinder</h1>
+      <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "profile" %}">Return to Edit Profile</a><br>
+  </div>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

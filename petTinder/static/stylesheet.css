@@ -1,3 +1,20 @@
+.site-title{
+  font-family: monospace;
+}
+
+.page-header{
+  padding: 1em;
+  color: white;
+  background-color: #0f8edd;
+  clear: left;
+  text-align: center;
+}
+
+.site-icon{
+  height: 10%;
+  width: 10%;
+}
+
 .login{
   font-size: 200%;
   color: blue;

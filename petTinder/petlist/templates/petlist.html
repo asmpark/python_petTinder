@@ -8,10 +8,12 @@
 </head>
 <body>
     <div class="page-header">
+        <img class="site-icon" src="{% static 'favicon.ico' %}">
+        <h1 class="site-title">Pet Tinder</h1>
         <a href="{% url "homepage" %}">Home Page</a><br>
         <a href="{% url "logoutuser" %}">Log Out</a><br><br>
     </div>
-
+    <h1 class="name">Your Pet List</h1>
     <div class="petlist">
       {% if numPets < 10 %}
         You can add up to 10 pets! <br>

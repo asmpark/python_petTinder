@@ -8,10 +8,12 @@
 </head>
 <body>
   <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}">
+      <h1 class="site-title">Pet Tinder</h1>
       <a href="{% url "userpets" %}">Your Pet List</a><br>
       <a href="{% url "profile" %}">Edit Profile</a><br>
-      <a href="{% url "index" %}">Swipe Page</a><br>
-      <a href="{% url "allusers" %}">Follow</a><br>
+      <a href="{% url "index" %}">Swipe Through Pets</a><br>
+      <a href="{% url "allusers" %}">User List</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
 
