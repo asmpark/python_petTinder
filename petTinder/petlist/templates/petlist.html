@@ -32,6 +32,7 @@
           {{pet.pet_bio}}
           <br>
           <a href="{% url "del_pet" pet_id=pet.id %}">Delete Pet</a>
+          <a href="{% url "edit_pet" pet_id=pet.id %}">Edit Pet</a>
           </p>
         {% endfor %}
       {% else %}

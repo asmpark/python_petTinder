@@ -63,6 +63,7 @@ def edit_profile(request):
 def del_user(request):
     try:
         u = User.objects.get(username = request.user)
+        UserProfile.objects.filter(userid=request.user.id).delete()
         Pets.objects.filter(user_id=request.user.id).delete()
         PetVote.objects.filter(user_id=request.user.id).delete()
         u.delete()

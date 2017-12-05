@@ -13,6 +13,7 @@
       <a href="{% url "homepage" %}">Home Page</a><br>
       <a href="{% url "profile" %}">Return to Edit Profile</a><br>
   </div>
+  <h1 class="name">Change Password</h1>
   <form method="post">
     {% csrf_token %}
     {{ form.as_p }}

@@ -49,4 +49,33 @@ def del_pet(request, pet_id):
     PetVote.objects.filter(pet_id=pet_id).delete()
     return redirect('userpets')
 
+@login_required
+def edit_pet(request, pet_id):
+    try:
+        editpet = Pets.objects.filter(id=pet_id)[0]
+        form = PetForm(initial={'pet_name': editpet.pet_name, 'pet_photo': editpet.pet_photo, 'pet_bio': editpet.pet_bio})
+    except IndexError:
+        editpet=None
+        form=PetForm()
+    context=dict(form=form, pet=editpet)
+    return render(request,'editpet.html',context)
 
+@login_required
+def edit_this_pet(request, pet_id):
+    if request.method=='POST':
+        try:
+            editpet=Pets.objects.filter(id=pet_id)[0]
+            form=PetForm(request.POST,request.FILES,instance=editpet)
+            if form.is_valid():
+                edits=form.save(commit=False)
+                edits.user=request.user
+                edits.pet_name=request.POST['pet_name']
+                edits.pet_photo=request.FILES['pet_photo']
+                edits.pet_bio=request.POST['pet_bio']
+                edits.save()
+                return redirect('userpets')
+        except IndexError:
+            form=PetForm()
+    else:
+        form=PetForm()
+    return redirect('userpets')
