@@ -8,16 +8,18 @@
 </head>
 <body>
   <div class="page-header">
-      <img class="site-icon" src="{% static 'favicon.ico' %}">
-      <h1 class="site-title">Pet Tinder</h1>
       <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "followingList" %}">Following</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <div class="userList">
     {% if userList %}
+      <h3>User Name: </h3>
       {% for user in userList %}
-        <h3>User Name: {{ user.username }} </h3>
-        <!-- Make a following button here! -->
+        {{ user.username }}
+        <a href="/otherPetList/{{user.username}}">See Pet List</a>
+        <button onclick="location.href='{% url "followingList" %}'">Follow</button>
+        <br>
       {% endfor %}
     {% else %}
       You have no users to follow!

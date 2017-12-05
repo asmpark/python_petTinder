@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from . import models
 
-#from .models import Pets
+from petlist.models import Pets
 # Create your views here.
 
 @login_required
@@ -21,8 +21,21 @@ def allusers(request):
     context=dict(userList=userList)
     return render(request,'userlist.html',context)
 
+@login_required
+def otherPetList(request, username=None):
+    try:
+        userPetList=[]
+        userPetList=(Pets.objects
+                     .filter(user__username=username))
+        #numPets = len(userPetList)
+    except IndexError:
+        userPetList=None
+        #numPets = '0'
+    context=dict(userPetList=userPetList)
+    #context=dict(userPetList=userPetList, numPets=numPets)
+    return render(request,'otherpetlist.html',context)
 
-#@login_required
-#def following(request, id):
+@login_required
+def followingList(request, id):
 
-#    return render(request,'following.html',context)
+    return render(request,'following.html',context)
