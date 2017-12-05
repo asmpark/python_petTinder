@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect
 #from django.contrib.auth import models
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+from django.utils.datastructures import MultiValueDictKeyError
 
 from . import models, forms
 
@@ -70,7 +71,10 @@ def edit_this_pet(request, pet_id):
                 edits=form.save(commit=False)
                 edits.user=request.user
                 edits.pet_name=request.POST['pet_name']
-                edits.pet_photo=request.FILES['pet_photo']
+                try:
+                    edits.pet_photo=request.FILES['pet_photo']
+                except MultiValueDictKeyError:
+                    edits.pet_photo=editpet.pet_photo
                 edits.pet_bio=request.POST['pet_bio']
                 edits.save()
                 return redirect('userpets')
