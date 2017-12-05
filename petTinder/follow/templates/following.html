@@ -1,24 +1,22 @@
 <!DOCTYPE html>
 <head>
-  <title>Following</title>
+  <title>Users You've Followed</title>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
   <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
   <div class="page-header">
-      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
-      <h1 class="site-title">Pet Tinder</h1>
-      <a href="{% url "allUsers" %}">Back to User List</a><br><br>
       <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "allusers" %}">User List</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <div class="following">
+    <h1>User You've Followed:</h1>
     {% if followingList %}
-      <h3>User Name: </h3>
       {% for user in followingList %}
-        {{user.username}}
-      {% end for%}
+        <h3>User Name: </h3>{{user.username}}
+      {% endfor %}
     {% else %}
       You are not following any users!
     {% endif %}
