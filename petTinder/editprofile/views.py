@@ -6,6 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
+from django.core.exceptions import FieldDoesNotExist, MultipleObjectsReturned
+from django.utils.datastructures import MultiValueDictKeyError
 
 from . import models, forms
 
@@ -19,26 +21,43 @@ from .forms import UserProfileForm
 @login_required
 def profile(request):
     try:
-        curr_user = request.user
-        profile=request.user.userprofile
-    except models.UserProfile.DoesNotExist:
+        profile=UserProfile.objects.filter(userid=request.user.id)[0]
+        form = UserProfileForm(initial={'photo': profile.photo, 'bio': profile.bio})
+    except IndexError:
         profile=None
-        curr_user=None
-
-    ##DOESN'T WORK PROPERLY
-    if request.method=='POST':
-        instance = request.user
-        form = UserProfileForm(request.POST, request.FILES, instance=instance)
-        if form.is_valid():
-#            form=form.save(commit=False)
-            form.user=instance
-            form.photo=request.FILES['photo']
-            form.bio=request.POST['bio']
-            form.save()
-    else:
-        form = UserProfileForm()
-    context=dict(form=form, curr_user=curr_user)
+        form=UserProfileForm()
+    context=dict(form=form)
     return render(request,'profile.html',context)
+
+@login_required
+def edit_profile(request):
+    if request.method=='POST':
+        try:
+            profile=UserProfile.objects.filter(userid=request.user.id)[0]
+        except IndexError:
+            form=UserProfileForm(request.POST,request.FILES)
+            if form.is_valid():
+                newprof=form.save(commit=False)
+                newprof.user=request.user
+                newprof.userid=request.user.id
+                newprof.photo=request.FILES.get('photo')
+                newprof.bio=request.POST['bio']
+                newprof.save()
+                return redirect('homepage')
+        form=UserProfileForm(request.POST,request.FILES, instance=profile)
+        if form.is_valid():
+            oldprof=form.save(commit=False)
+            oldprof.user=request.user
+            oldprof.userid=request.user.id
+            try:
+                oldprof.photo=request.FILES['photo']
+            except MultiValueDictKeyError:
+                oldprof.photo=profile.photo
+            oldprof.bio=request.POST['bio']
+            oldprof.save()
+    else:
+        form=UserProfileForm()
+    return redirect('homepage')
 
 @login_required
 def del_user(request):

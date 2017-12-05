@@ -7,7 +7,7 @@ from editprofile.models import UserProfile
 class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
-        fields=["photo","bio"]
+        fields=['photo','bio']
 
     def clean_avatar(self):
         avatar = self.cleaned_data['avatar']

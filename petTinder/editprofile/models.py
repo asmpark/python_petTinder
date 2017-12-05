@@ -8,7 +8,9 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class UserProfile(models.Model):
+#    user=models.ForeignKey(User, unique=False)
     user=models.OneToOneField(User)
+    userid=models.IntegerField(default='0')
     photo=models.ImageField(upload_to='photos')
     bio=models.TextField()
     

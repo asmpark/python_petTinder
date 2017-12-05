@@ -26,8 +26,8 @@
 }
 
 .profpic-home{
-  height: 60%;
-  width: 60%;
+  height: 25%;
+  width: 25%;
   font-size: 100%;
   font-style: italic;
 }
@@ -42,7 +42,17 @@
 }
 
 .NA{
-  font-size: 70%;
+  font-size: 100%;
   font-style: italic;
   font-weight: normal;
+}
+
+.Error{
+  font-weight: bolder;
+  color: red;
+}
+
+.no-image{
+  height: 15%;
+  width: 15%;
 }

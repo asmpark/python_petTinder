@@ -8,7 +8,7 @@
 </head>
 <body>
   <div class="page-header">
-      <img class="site-icon" src="{% static 'favicon.ico' %}">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
       <h1 class="site-title">Pet Tinder</h1>
       <a href="{% url "userpets" %}">Your Pet List</a><br>
       <a href="{% url "profile" %}">Edit Profile</a><br>
@@ -16,26 +16,26 @@
       <a href="{% url "allusers" %}">User List</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
-
   <div class="current-user">
-    {% if myAccount %}
-      {% for person in myAccount %}
 
-        <h1 class="name">Hello, {{person.username}}!</h1>
-        <h2>Your photo:</h2><br>
-        <img class="profpic-home" src= "{{person.photo.url}}" alt="No photo available"><br><br>
-        <h2>Your bio:<h2>
-        {% if person.bio %}
-          <p>{{person.bio}}</p>
-        {% else %}
-          <p class="NA">You have not written a bio!</p>
-        {% endif %}
-        <br>
-        <h2>Your links:</h2>
-        <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3><br>
-      {% endfor %}
+    {% if user %}
+      <h1 class="name">Hello, {{user.username}}!</h1>
+      <h2>Your photo:</h2><br>
+      {% if myAccount.photo %}
+        <img class="profpic-home" src="{{myAccount.photo.url}}" alt="No photo available"><br><br>
+      {% else %}
+        <img class="no-image" src="/static/no_image.jpeg" alt="No photo available"><br><br>
+      {% endif %}
+      <h2>Your bio:</h2>
+      {% if myAccount.bio %}
+        <p>{{myAccount.bio}}</p><br>
+      {% else %}
+        <h3 class="NA">No bio available</h3><br>
+      {% endif %}
+      <h2>Your links:</h2>
+      <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3><br>
     {% else %}
-      <h3>Nothing here!</h3>
+      <h3 class="Error">Please Log In</h3>
     {% endif %}
   </div>
 
