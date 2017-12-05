@@ -7,7 +7,8 @@ from petlist.models import Pets
 class PetForm(forms.ModelForm):
     class Meta:
         model = Pets
-        fields=["id","pet_name","pet_photo","pet_bio"]
+        fields=["id","pet_name","pet_photo","pet_photo2","pet_photo3",
+                "pet_photo4","pet_photo5","pet_photo6","pet_bio"]
 
     def clean_avatar(self):
         avatar = self.cleaned_data['avatar']
