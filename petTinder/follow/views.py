@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from . import models
 
 from petlist.models import Pets
+from follow.models import FollowStruct
 # Create your views here.
 
 @login_required
@@ -24,18 +25,34 @@ def allusers(request):
 @login_required
 def otherPetList(request, username=None):
     try:
-        userPetList=[]
-        userPetList=(Pets.objects
+        userPetList = []
+        userPetList = (Pets.objects
                      .filter(user__username=username))
-        #numPets = len(userPetList)
     except IndexError:
         userPetList=None
-        #numPets = '0'
     context=dict(userPetList=userPetList)
-    #context=dict(userPetList=userPetList, numPets=numPets)
     return render(request,'otherpetlist.html',context)
 
-@login_required
-def followingList(request, id):
+def createFollow(request, followUser, followYN):
+    models.FollowStruct.objects.create(
+        userFrom = request.user,
+        userTo = followUser,
+        follow = followYN,
+    )
+    return redirect('allusers')
 
+@login_required
+def clickFollow(request,username=None):
+    return createFollow(request, username, True)
+
+@login_required
+def followingList(request):
+    try:
+        followList = []
+        followList = (FollowStruct.objects
+                  .filter(userFrom = request.user)
+                  .filter(follow = 'True'))
+    except IndexError:
+        followList=None
+    context=dict(followList=followList)
     return render(request,'following.html',context)
