@@ -10,7 +10,12 @@ from django.contrib.auth.models import User
 class Pets(models.Model):
     user=models.ForeignKey(User)
     pet_name=models.CharField(max_length=30)
-    pet_photo=models.ImageField(upload_to='photos')
+    pet_photo=models.ImageField(upload_to='photos', default=None)
+    pet_photo2=models.ImageField(upload_to='photos', default=None)
+    pet_photo3=models.ImageField(upload_to='photos', default=None)
+    pet_photo4=models.ImageField(upload_to='photos', default=None)
+    pet_photo5=models.ImageField(upload_to='photos', default=None)
+    pet_photo6=models.ImageField(upload_to='photos', default=None)
     pet_bio=models.TextField()
 
     def __unicode__(self):
