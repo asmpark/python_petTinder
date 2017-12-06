@@ -70,7 +70,7 @@ def del_user(request):
         FollowStruct.objects.filter(follow_id=request.user.id).delete()
         u.delete()
         return redirect('/login/')
-    
+
     except User.DoesNotExist:
         messages.error(request, "User does not exist")
         return render(request,'homepage.html')

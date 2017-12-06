@@ -42,6 +42,7 @@
           {{com.post}}<br>
           {% if com.owns%}
               <a href="{% url "del_com" com_id=com.id%}">Delete Comment</a><br>
+              <a href="{% url "edit_com" com_id=com.id pet_id=pet_id%}">Edit Comment</a><br>
           {% endif %}
           <br>
         {% endfor %}
