@@ -17,8 +17,7 @@
       <br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
-  <div class="current-user">
-
+  <div>
     {% if user %}
       <h1 class="name">Hello, {{user.username}}!</h1>
       <h2>Your photo:</h2><br>
@@ -35,11 +34,10 @@
       {% endif %}
       <h2>Your links:</h2>
       <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3>
-      <h3><a href="{% url "followingList" %}">Users You've Follow</a></h3><br>
+      <h3><a href="{% url "followinglist" %}">Users You've Follow</a></h3><br>
     {% else %}
       <h3 class="error">Please Log In</h3>
     {% endif %}
   </div>
-
 </body>
 </html>

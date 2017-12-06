@@ -14,7 +14,7 @@
         <a href="{% url "logoutuser" %}">Log Out</a><br>
     </div>
     <h1 class="name">Your Pet List</h1>
-    <div class="petlist">
+    <div>
       {% if numPets < 10 %}
         You can add up to 10 pets! <br>
         <a href="{% url "create_pet" %}">Add New Pet</a><br><br>
@@ -51,10 +51,12 @@
           <br>
           <a href="{% url "del_pet" pet_id=pet.id %}">Delete Pet</a>
           <a href="{% url "edit_pet" pet_id=pet.id %}">Edit Pet</a>
+          <a href="{% url "comment" pet_id=pet.id %}">Comments</a>
           </p><br>
         {% endfor %}
       {% else %}
         You have no pets to show!
       {% endif %}
+    </div>
 </body>
 </html>

@@ -14,7 +14,7 @@
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <h1 class="name">Pet Swipe Page</h1>
-  <div class="petTinder">
+  <div>
       {% if petTinder %}
       <h2>{{petTinder.pet_name}}</h2>
       <img class="profpic" src= "{{petTinder.pet_photo.url}}" alt="No Pet Photo Available">
@@ -36,12 +36,10 @@
       {% if petTinder.pet_photo6 %}
          <img class="profpic" src= "{{petTinder.pet_photo6.url}}" alt="No pet photo"><br>
       {% endif%}
-      <div class="bio">
+      <div>
         <h3>Bio:</h3>
         <p>
-
         {{petTinder.pet_bio}}<br><br>
-
         {% if likedAlready %}
           {% for voted in likedAlready %}
             {% if voted.vote %}
@@ -56,14 +54,11 @@
           <a href="{% url "like" pet_id=petTinder.id %}">Like</a>
           <a href="{% url "nah" pet_id=petTinder.id %}">Pass</a>
         {% endif %}
-
       {% else %}
         Wait for more pets nearby!
       {% endif %}
-
       </p>
       </div>
-
   </div>
 </body>
 </html>

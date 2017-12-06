@@ -15,7 +15,7 @@
         <a href="{% url "logoutuser" %}">Log Out</a><br>
     </div>
 
-    <div class="petlist">
+    <div>
       {% if userPetList %}
         {% for pet in userPetList %}
           <h3>Pet Name:
@@ -47,5 +47,6 @@
       {% else %}
         There is no pets to show!
       {% endif %}
+  </div>
 </body>
 </html>

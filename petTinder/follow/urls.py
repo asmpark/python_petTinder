@@ -5,7 +5,7 @@ from . import views
 
 urlpatterns = [
     url(r'^allusers/$',views.allusers,name='allusers'),
-    url(r'^otherPetList/(?P<username>\w{1,50})$',views.otherPetList,name='otherPetList'),
-    url(r'^clickFollow/(?P<username>\w{1,50})$',views.clickFollow,name='clickFollow'),
-    url(r'^followingList/$',views.followingList,name='followingList'),
+    url(r'^otherpetlist/(?P<user_id>\d+)$',views.otherPetList,name='otherpetlist'),
+    url(r'^clickfollow/(?P<follow_id>\d+)$',views.clickFollow,name='clickfollow'),
+    url(r'^followinglist/$',views.followingList,name='followinglist'),
 ]

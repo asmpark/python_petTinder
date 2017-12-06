@@ -13,11 +13,11 @@
       <a href="{% url "homepage" %}">Home Page</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
-  <div class="following">
-    <h1>User You've Followed:</h1>
-    {% if followingList %}
-      {% for user in followingList %}
-        <h3>User Name: </h3>{{user.username}}
+  <div>
+    <h1 class="name">User You've Followed:</h1>
+    {% if followList %}
+      {% for user in followList %}
+        <h3>User Name: </h3>{{user.follow_user}}
       {% endfor %}
     {% else %}
       <br>You are not following any users!
