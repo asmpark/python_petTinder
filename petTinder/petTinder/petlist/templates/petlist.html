@@ -51,6 +51,10 @@
           <br>
           <a href="{% url "del_pet" pet_id=pet.id %}">Delete Pet</a>
           <a href="{% url "edit_pet" pet_id=pet.id %}">Edit Pet</a>
+          <br>
+          <a href="/writeComment/{{pet.id}}">Write Comment</a>
+          <a href="/showComment/{{pet.id}}">See Comments</a>
+          <button>Delete Comments</button>
           </p><br>
         {% endfor %}
       {% else %}

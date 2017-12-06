@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'homepage',
     'petlist',
     'follow',
-    #'comment',
+    'comment',
 ]
 
 MIDDLEWARE = [

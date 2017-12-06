@@ -12,6 +12,8 @@ from . import models, forms
 from .models import Pets
 from .forms import PetForm
 from swipe.models import PetVote
+from comment.forms import CommentForm
+from comment.views import writeComment, showComment
 
 # Create your views here.
 

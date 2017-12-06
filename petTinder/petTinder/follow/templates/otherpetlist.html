@@ -41,7 +41,9 @@
               <img class="pet-photo" src= "{{pet.pet_photo6.url}}" alt="No pet photo"><br>
            {% endif%}
           <p><strong>Bio:</strong>
-          {{pet.pet_bio}}
+          {{pet.pet_bio}}<br>
+          <a href="/writeComment/{{pet.id}}">Write Comment</a>
+          <a href="/showComment/{{pet.id}}">See Comments</a>
           </p>
         {% endfor %}
       {% else %}

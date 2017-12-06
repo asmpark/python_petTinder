@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Comment List</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
+      <h1 class="site-title">Pet Tinder</h1>
+      <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "allusers" %}">User List</a><br>
+      <a href="{% url "logoutuser" %}">Log Out</a><br>
+  </div>
+  <div class="commentList">
+    {% if commentList %}
+      {% for comment in commentList %}
+        {{ comment.commentwords }}<br>
+      {% endfor %}
+    {% else %}
+      There is no comments for this pet!
+    {% endif %}
+  </div>
+</body>
+</html>

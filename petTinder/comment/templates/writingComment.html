@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Write Comment</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
+      <h1 class="site-title">Pet Tinder</h1>
+      <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "allusers" %}">Back to User List</a><br>
+  </div>
+  <h1 class="name">Write your comment</h1>
+  <form action="/showComment/{{pet.id}}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    Comments: <br>
+    {{ form.commentwords }}
+    <p>
+      <button type="submit">Write</button>
+    </p>
+  </form>
+</body>
+</html>
