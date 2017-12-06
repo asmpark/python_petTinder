@@ -42,6 +42,8 @@
            {% endif%}
           <p><strong>Bio:</strong>
           {{pet.pet_bio}}
+          <a href="{% url "comment" pet_id=pet.id %}">Comments</a>
+          <a href="{% url "edit_pet" pet_id=pet.id %}">Edit Pet</a>
           </p>
         {% endfor %}
       {% else %}
