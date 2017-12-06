@@ -11,7 +11,6 @@
       <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
       <h1 class="site-title">Pet Tinder</h1>
       <a href="{% url "homepage" %}">Home Page</a><br>
-      <a href="{% url "followingList" %}">Following</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <div class="userList">
@@ -20,9 +19,11 @@
       {% for user in userList %}
         {{ user.username }}
         <a href="/otherPetList/{{user.username}}">See Pet List</a>
-        <button onclick="location.href='{% url "followingList" %}'">Follow</button>
+        <a href="/clickFollow/{{user.username}}">Follow</a>
         <br>
       {% endfor %}
+      <br><br><br>
+      <h3><a href="{% url "followingList" %}">Go to Your Following</a></h3><br>
     {% else %}
       You have no users to follow!
     {% endif %}

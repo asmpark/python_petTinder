@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -36,7 +36,7 @@ def otherPetList(request, username=None):
 def createFollow(request, followUser, followYN):
     models.FollowStruct.objects.create(
         userFrom = request.user,
-        userTo = followUser,
+        userTo = get_object_or_404(User, username=followUser),
         follow = followYN,
     )
     return redirect('allusers')
