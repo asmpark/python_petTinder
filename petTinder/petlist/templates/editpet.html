@@ -16,10 +16,24 @@
     <div class="content container">
         <div class="row">
             <div class="col-md-8">
-              <h1>Edit Pet</h1>
+              <h1 class="name">Edit Pet</h1>
               <form method="POST" action="{% url "edit_this_pet" pet_id=pet.id %}" enctype="multipart/form-data">
                   {% csrf_token %}
-                  {{ form.as_p }}
+
+                  <h3>Pet Name:</h3>
+                  {{form.pet_name}}<br>
+                  <h3>Pet Photos:</h3>
+                   Required Photo: <br>
+                   {{form.pet_photo}}<br><br>
+                   Optional Photos: <br>
+                   {{form.pet_photo2}}<br>
+                   {{form.pet_photo3}}<br>
+                   {{form.pet_photo4}}<br>
+                   {{form.pet_photo5}}<br>
+                   {{form.pet_photo6}}<br>
+                   <h3>Pet Bio:</h3>
+                   {{form.pet_bio}}<br><br>
+
                   <button type="submit">Edit Pet</button>
               </form>
             </div>

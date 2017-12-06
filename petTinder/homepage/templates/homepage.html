@@ -14,6 +14,7 @@
       <a href="{% url "profile" %}">Edit Profile</a><br>
       <a href="{% url "index" %}">Swipe Through Pets</a><br>
       <a href="{% url "allusers" %}">User List</a><br>
+      <br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <div class="current-user">
@@ -33,8 +34,7 @@
         <h3 class="NA">No bio available</h3><br>
       {% endif %}
       <h2>Your links:</h2>
-      <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3>
-      <h3><a href="{% url "followingList" %}">Users You've Follow</a></h3><br>
+      <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3><br>
     {% else %}
       <h3 class="error">Please Log In</h3>
     {% endif %}

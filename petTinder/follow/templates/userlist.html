@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>User List for Following</title>
+  <title>User List</title>
   {% load static %}
   <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
   <link rel="icon" href="{% static 'favicon.ico' %}">
 </head>
 <body>
   <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
+      <h1 class="site-title">Pet Tinder</h1>
       <a href="{% url "homepage" %}">Home Page</a><br>
+      <a href="{% url "followingList" %}">Following</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
   <div class="userList">
@@ -17,11 +20,9 @@
       {% for user in userList %}
         {{ user.username }}
         <a href="/otherPetList/{{user.username}}">See Pet List</a>
-        <a href="/clickFollow/{{user.username}}">Follow</a>
+        <button onclick="location.href='{% url "followingList" %}'">Follow</button>
         <br>
       {% endfor %}
-      <br><br><br>
-      <h3><a href="{% url "followingList" %}">Go to Your Following</a></h3><br>
     {% else %}
       You have no users to follow!
     {% endif %}
