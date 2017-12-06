@@ -9,15 +9,5 @@ from petlist.models import Pets
 from . import models
 
 # Register your models here.
-#
-#class UserProfileInline(admin.StackedInline):
-#    model=models.UserProfile
-#    can_delete_user=False
-#    verbose_name_plural='profile'
-#
-#class UserAdmin(UserAdmin):
-#    inlines=(UserProfileInline,)
-#
-#admin.site.unregister(User)
-#admin.site.register(User,UserAdmin)
+
 

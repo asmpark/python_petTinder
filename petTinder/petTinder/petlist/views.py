@@ -36,17 +36,6 @@ def create_pet(request):
             newpet = form.save(commit=False)
             newpet.user = request.user
             newpet.pet_name=request.POST['pet_name']
-            # newpet.pet_photo=request.FILES['pet_photo']
-            # newpet.pet_photo2=request.FILES['pet_photo2']
-            # newpet.pet_photo3=request.FILES['pet_photo3']
-            # newpet.pet_photo4=request.FILES['pet_photo4']
-            # newpet.pet_photo5=request.FILES['pet_photo5']
-            # newpet.pet_photo6=request.FILES['pet_photo6']
-            #
-            # try:
-            #     newpet.pet_photo=request.FILES['pet_photo']
-            # except MultiValueDictKeyError:
-            #     newpet.pet_photo=None
             try:
                 newpet.pet_photo2=request.FILES['pet_photo2']
             except MultiValueDictKeyError:

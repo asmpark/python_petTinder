@@ -13,7 +13,7 @@
       <a href="{% url "homepage" %}">Home Page</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
-  <div class="following">
+  <div>
     <h1 class="name">User You've Followed:</h1>
     {% if followList %}
       {% for user in followList %}

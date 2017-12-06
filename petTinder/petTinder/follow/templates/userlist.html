@@ -14,7 +14,7 @@
       <a href="{% url "homepage" %}">Home Page</a><br>
       <a href="{% url "logoutuser" %}">Log Out</a><br>
   </div>
-  <div class="userList">
+  <div>
     <h1 class="name">All Users</h1>
     {% if userListFollowing %}
       {% for other in userListFollowing%}

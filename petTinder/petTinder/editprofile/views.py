@@ -6,7 +6,6 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
-from django.core.exceptions import FieldDoesNotExist, MultipleObjectsReturned
 from django.utils.datastructures import MultiValueDictKeyError
 
 from . import models, forms
@@ -15,6 +14,7 @@ from petlist.models import Pets
 from swipe.models import PetVote
 from editprofile.models import UserProfile
 from .forms import UserProfileForm
+from follow.models import FollowStruct
 
 # Create your views here.
 
@@ -66,6 +66,8 @@ def del_user(request):
         UserProfile.objects.filter(userid=request.user.id).delete()
         Pets.objects.filter(user_id=request.user.id).delete()
         PetVote.objects.filter(user_id=request.user.id).delete()
+        FollowStruct.objects.filter(user=request.user.id).delete()
+        FollowStruct.objects.filter(follow_id=request.user.id).delete()
         u.delete()
         return redirect('/login/')
     
