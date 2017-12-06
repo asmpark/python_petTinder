@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home Page</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'stylesheet.css' %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
+      <h1 class="site-title">Pet Tinder</h1>
+      <a href="{% url "userpets" %}">Your Pet List</a><br>
+      <a href="{% url "profile" %}">Edit Profile</a><br>
+      <a href="{% url "index" %}">Swipe Through Pets</a><br>
+      <a href="{% url "allusers" %}">User List</a><br>
+      <br>
+      <a href="{% url "logoutuser" %}">Log Out</a><br>
+  </div>
+  <div class="current-user">
+
+    {% if user %}
+      <h1 class="name">Hello, {{user.username}}!</h1>
+      <h2>Your photo:</h2><br>
+      {% if myAccount.photo %}
+        <img class="profpic-home" src="{{myAccount.photo.url}}" alt="No photo available"><br><br>
+      {% else %}
+        <img class="no-image" src="/static/no_image.jpeg" alt="No photo available"><br><br>
+      {% endif %}
+      <h2>Your bio:</h2>
+      {% if myAccount.bio %}
+        <p>{{myAccount.bio}}</p><br>
+      {% else %}
+        <h3 class="NA">No bio available</h3><br>
+      {% endif %}
+      <h2>Your links:</h2>
+      <h3><a href="{% url "likedpets" %}">Pets You've Liked</a></h3>
+      <h3><a href="{% url "followinglist" %}">Users You've Follow</a></h3><br>
+    {% else %}
+      <h3 class="error">Please Log In</h3>
+    {% endif %}
+  </div>
+
+</body>
+</html>

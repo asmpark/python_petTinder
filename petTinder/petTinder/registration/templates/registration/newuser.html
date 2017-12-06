@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Create New User</title>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static "stylesheet.css" %}">
+  <link rel="icon" href="{% static 'favicon.ico' %}">
+</head>
+<body>
+  <div class="page-header">
+      <img class="site-icon" src="{% static 'favicon.ico' %}" alt="Logo">
+      <h1 class="site-title">Pet Tinder</h1>
+      <a href="{% url "login" %}">Return to Login</a><br><br>
+  </div>
+  <!-- <button onclick="location.href='{% url "login" %}'">Return to Login</button> -->
+  <form action="{% url "register" %}" method="post">
+    {% csrf_token %}
+    <h2>Create New User</h2>
+    {{ form.as_p }}
+    <p>
+      <button type="submit">Create New User</button>
+    </p>
+  </form>
+</body>
+</html>
